@@ -24,3 +24,5 @@ function personal4
 end
 
 alias var="cp ~/DATA/arcolinux-nemesis/Personal/settings/variety/variety.conf ~/.config/variety/variety.conf"
+
+alias record='gpu-screen-recorder -w HDMI-0 -f 60 -o /home/erik/Videos/recording-$(date +"%Y""-""%m""-""%d""-""%H""-""%M""-""%S").mp4 -a default_input -q ultra -ac aac'
