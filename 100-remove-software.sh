@@ -141,9 +141,27 @@ if ! grep -q "kiro" /etc/os-release; then
   remove_if_installed picom
   remove_if_installed lxappearance
 
-  remove_if_installed xfsprogs
-  remove_if_installed btrfs-progs
-  remove_if_installed jfsutils
+  root_fs=$(findmnt -no FSTYPE /)
+
+  case "$root_fs" in
+    xfs)
+      remove_if_installed btrfs-progs
+      remove_if_installed jfsutils
+      ;;
+    btrfs)
+      remove_if_installed xfsprogs
+      remove_if_installed jfsutils
+      ;;
+    jfs)
+      remove_if_installed xfsprogs
+      remove_if_installed btrfs-progs
+      ;;
+    *)
+      remove_if_installed xfsprogs
+      remove_if_installed btrfs-progs
+      remove_if_installed jfsutils
+      ;;
+  esac
   remove_if_installed mkinitcpio-nfs-utils
   remove_if_installed xfburn
   remove_if_installed parole
