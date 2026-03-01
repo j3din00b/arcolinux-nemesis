@@ -91,7 +91,7 @@ for pkg in simplescreenrecorder simplescreenrecorder-git; do
     fi
 done
 
-sudo pacman -S --noconfirm --needed simplescreenrecorder-qt6-git
+sudo pacman -S --noconfirm --needed simplescreenrecorder-git
 
 
 # All the software below will be installed on all desktops except on Plasma

@@ -8,7 +8,7 @@ Server = http://mirror.rackspace.com/archlinux/$repo/os/$arch
 Server = https://mirror.rackspace.com/archlinux/$repo/os/$arch
 ##
 ## Arch Linux repository mirrorlist
-## Generated on 2026-02-06
+## Generated on 2026-03-01
 ##
 
 ## Worldwide
@@ -114,6 +114,8 @@ Server = https://mirror2.evolution-host.com/archlinux/$repo/os/$arch
 Server = https://stygian.failzero.net/mirror/archlinux/$repo/os/$arch
 Server = https://mirror.franscorack.com/archlinux/$repo/os/$arch
 Server = http://mirror.its.dal.ca/archlinux/$repo/os/$arch
+Server = http://ca.mirror.cx/archlinux/$repo/os/$arch
+Server = https://ca.mirror.cx/archlinux/$repo/os/$arch
 Server = http://mirror.quantum5.ca/archlinux/$repo/os/$arch
 Server = https://mirror.quantum5.ca/archlinux/$repo/os/$arch
 Server = http://muug.ca/mirror/archlinux/$repo/os/$arch
@@ -379,6 +381,7 @@ Server = http://arch.mirror.cloud.thatcyberlynx.de/$repo/os/$arch
 Server = https://arch.mirror.cloud.thatcyberlynx.de/$repo/os/$arch
 Server = https://mirror.thereisno.page/archlinux/$repo/os/$arch
 Server = http://ftp.tu-chemnitz.de/pub/linux/archlinux/$repo/os/$arch
+Server = https://ftp.tu-chemnitz.de/pub/linux/archlinux/$repo/os/$arch
 Server = http://mirror.ubrco.de/archlinux/$repo/os/$arch
 Server = https://mirror.ubrco.de/archlinux/$repo/os/$arch
 Server = http://ftp.uni-bayreuth.de/linux/archlinux/$repo/os/$arch
@@ -485,6 +488,8 @@ Server = http://www.miraa.jp/archlinux/$repo/os/$arch
 Server = https://www.miraa.jp/archlinux/$repo/os/$arch
 Server = http://mirror.rain.ne.jp/archlinux/$repo/os/$arch
 Server = https://mirror.rain.ne.jp/archlinux/$repo/os/$arch
+Server = http://ftp.yz.yamagata-u.ac.jp/pub/linux/archlinux/$repo/os/$arch
+Server = https://ftp.yz.yamagata-u.ac.jp/pub/linux/archlinux/$repo/os/$arch
 
 ## Kazakhstan
 Server = http://mirror.ps.kz/archlinux/$repo/os/$arch
@@ -568,6 +573,8 @@ Server = http://mirror.lyrahosting.com/archlinux/$repo/os/$arch
 Server = https://mirror.lyrahosting.com/archlinux/$repo/os/$arch
 Server = http://mirror.mijn.host/archlinux/$repo/os/$arch
 Server = https://mirror.mijn.host/archlinux/$repo/os/$arch
+Server = http://nl.mirror.cx/archlinux/$repo/os/$arch
+Server = https://nl.mirror.cx/archlinux/$repo/os/$arch
 Server = https://nl.arch.niranjan.co/$repo/os/$arch
 Server = http://ftp.nluug.nl/os/Linux/distr/archlinux/$repo/os/$arch
 Server = http://mirror.nyaa.vc/archlinux/$repo/os/$arch
@@ -604,6 +611,8 @@ Server = http://mirror.archlinux.no/$repo/os/$arch
 Server = https://mirror.archlinux.no/$repo/os/$arch
 Server = http://archlinux.uib.no/$repo/os/$arch
 Server = https://archlinux.lysakermoen.com/$repo/os/$arch
+Server = http://no.mirror.cx/archlinux/$repo/os/$arch
+Server = https://no.mirror.cx/archlinux/$repo/os/$arch
 Server = http://mirror.neuf.no/archlinux/$repo/os/$arch
 Server = https://mirror.neuf.no/archlinux/$repo/os/$arch
 Server = http://mirror.terrahost.no/linux/archlinux/$repo/os/$arch
@@ -612,6 +621,8 @@ Server = http://mirror.terrahost.no/linux/archlinux/$repo/os/$arch
 Server = http://archlinux.mirror.py/archlinux/$repo/os/$arch
 
 ## Poland
+Server = http://mirror.alldaydev.com/archlinux/$repo/os/$arch
+Server = https://mirror.alldaydev.com/archlinux/$repo/os/$arch
 Server = http://ftp.icm.edu.pl/pub/Linux/dist/archlinux/$repo/os/$arch
 Server = https://ftp.icm.edu.pl/pub/Linux/dist/archlinux/$repo/os/$arch
 Server = http://mirror.juniorjpdj.pl/archlinux/$repo/os/$arch
@@ -675,8 +686,6 @@ Server = http://web.sketserv.ru/archlinux/$repo/os/$arch
 Server = https://web.sketserv.ru/archlinux/$repo/os/$arch
 Server = http://mirror.truenetwork.ru/archlinux/$repo/os/$arch
 Server = https://mirror.truenetwork.ru/archlinux/$repo/os/$arch
-Server = http://vladivostokst.ru/archlinux/$repo/os/$arch
-Server = https://vladivostokst.ru/archlinux/$repo/os/$arch
 Server = http://mirror.yandex.ru/archlinux/$repo/os/$arch
 Server = https://mirror.yandex.ru/archlinux/$repo/os/$arch
 
@@ -750,6 +759,8 @@ Server = https://mirror.funami.tech/arch/$repo/os/$arch
 Server = https://mirror.hemino.net/archlinux/$repo/os/$arch
 Server = http://ftp.hrts.kr/archlinux/$repo/os/$arch
 Server = https://ftp.hrts.kr/archlinux/$repo/os/$arch
+Server = http://ftp.io.kr/$repo/os/$arch
+Server = https://ftp.io.kr/$repo/os/$arch
 Server = http://mirror.keiminem.com/archlinux/$repo/os/$arch
 Server = http://mirror2.keiminem.com/archlinux/$repo/os/$arch
 Server = https://mirror.keiminem.com/archlinux/$repo/os/$arch
