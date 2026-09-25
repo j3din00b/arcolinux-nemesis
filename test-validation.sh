@@ -70,6 +70,11 @@ VBOX_ONLY_SVCS=("vboxservice.service")
 # Packages the scripts only install when PipeWire Pulse is absent — skipped (not
 # failed) on PipeWire systems, which is the default audio stack now.
 PIPEWIRE_REPLACED_PKGS=("pulseaudio-bluetooth")
+# 920-ckb-next.sh installs/enables these only when hwinfo reports a Corsair keyboard.
+CORSAIR_ONLY_PKGS=("ckb-next-git")
+CORSAIR_ONLY_SVCS=("ckb-next-daemon.service")
+# 930-real-metal.sh removes these only on bare metal — inside any VM they must stay.
+BARE_METAL_REMOVE_PKGS=("qemu-guest-agent" "virtualbox-guest-utils")
 
 is_xfce_installed() {
     [[ -f /usr/share/xsessions/xfce.desktop ]]
@@ -77,6 +82,14 @@ is_xfce_installed() {
 
 is_virtualbox_guest() {
     systemd-detect-virt 2>/dev/null | grep -q "oracle"
+}
+
+is_virtual_machine() {
+    systemd-detect-virt --quiet 2>/dev/null
+}
+
+has_corsair_keyboard() {
+    command -v hwinfo &>/dev/null && hwinfo --keyboard 2>/dev/null | grep -qi "corsair"
 }
 
 has_pipewire_pulse() {
@@ -101,6 +114,11 @@ pkg_should_skip() {
             return 0
         fi
     done
+    for p in "${CORSAIR_ONLY_PKGS[@]}"; do
+        if [[ "$pkg" == "$p" ]] && ! has_corsair_keyboard; then
+            return 0
+        fi
+    done
     return 1
 }
 
@@ -109,6 +127,11 @@ svc_should_skip() {
     local s
     for s in "${VBOX_ONLY_SVCS[@]}"; do
         if [[ "$svc" == "$s" ]] && ! is_virtualbox_guest; then
+            return 0
+        fi
+    done
+    for s in "${CORSAIR_ONLY_SVCS[@]}"; do
+        if [[ "$svc" == "$s" ]] && ! has_corsair_keyboard; then
             return 0
         fi
     done
@@ -139,6 +162,15 @@ check_pkg_installed() {
 
 check_pkg_removed() {
     local pkg="$1"
+    local p
+    for p in "${BARE_METAL_REMOVE_PKGS[@]}"; do
+        if [[ "$pkg" == "$p" ]] && is_virtual_machine; then
+            if [[ "$DETAIL_MODE" == true ]]; then
+                echo -e "  ${YELLOW}⊘${NC} remove $pkg  ${YELLOW}SKIPPED${NC} (only removed on bare metal)"
+            fi
+            return
+        fi
+    done
     if ! pacman -Qq | grep -Fxq "$pkg"; then
         log_result "SUCCESS" "$pkg - not present"
     else

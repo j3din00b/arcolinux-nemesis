@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 2026.09.25
+
+### What Changed
+
+- `100-install-nemesis-software.sh` still installed `archlinux-tweak-tool-gtk4`, which no longer exists in `nemesis_repo` — the package is now `archlinux-tweak-tool`. Renamed in the install list and the header comment. Found by `test-validation.sh` after a full run in a Kiro VirtualBox VM.
+- `test-validation.sh` no longer reports hardware-gated operations as failures. A VM run used to end with 3 false failures: `ckb-next-git` + `ckb-next-daemon.service` (920 installs them only for a Corsair keyboard) and `virtualbox-guest-utils` "still installed" (930 removes guest tools only on bare metal). They are now SKIPPED when their guard is not met; the same VM run now scores 278/278.
+
+### Technical Details
+
+- New guard arrays next to the existing `VBOX_ONLY_*` / `PIPEWIRE_REPLACED_PKGS`: `CORSAIR_ONLY_PKGS`, `CORSAIR_ONLY_SVCS`, `BARE_METAL_REMOVE_PKGS` (`qemu-guest-agent`, `virtualbox-guest-utils`).
+- New helpers `has_corsair_keyboard()` (same `hwinfo --keyboard | grep -qi corsair` test as 920; false when hwinfo is absent) and `is_virtual_machine()` (`systemd-detect-virt --quiet`, any hypervisor — matching 930's `!= none` gate, unlike the Oracle-only `is_virtualbox_guest`).
+- `pkg_should_skip` / `svc_should_skip` gained the Corsair loops; `check_pkg_removed` now skips bare-metal-only removals inside a VM.
+
+### Files Modified
+
+- `100-install-nemesis-software.sh`
+- `test-validation.sh`
+
 ## 2026.07.04
 
 ### What Changed
