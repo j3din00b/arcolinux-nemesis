@@ -151,7 +151,10 @@ handle_cachyos() {
         remove_matching_packages cachyos-kernel-manager
         remove_matching_packages cachyos-kde-settings
         remove_matching_packages cachyos-fish-config
-        remove_matching_packages btrfs-progs
+        # CachyOS defaults to a btrfs root — keep the tooling when / is btrfs.
+        if [[ "$(findmnt -no FSTYPE /)" != "btrfs" ]]; then
+            remove_matching_packages btrfs-progs
+        fi
         remove_matching_packages cachy-browser
         # fastfetch stock->git swap is handled in 110 via -Rdd then install
         # fastfetch-git; an -Rs here breaks alacritty-tweak-tool-gtk4-git's dep.

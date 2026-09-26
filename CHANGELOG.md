@@ -5,6 +5,7 @@
 ### What Changed
 
 - `test-validation.sh` no longer fails on a btrfs (or xfs/jfs) root with "btrfs-progs - still installed". `0-current-choices.sh` keeps the tooling that matches the root filesystem and removes only the others, but the validator treated every `remove_matching_packages` line as unconditional. The tool that matches the root filesystem is now SKIPPED.
+- `handle_cachyos` in `common/handle.sh` removed `btrfs-progs` unconditionally, which stripped the tooling from CachyOS's default btrfs root. It now removes it only when `/` is not btrfs.
 
 ### Technical Details
 
@@ -12,6 +13,7 @@
 
 ### Files Modified
 
+- `common/handle.sh`
 - `test-validation.sh`
 
 ## 2026.09.25
