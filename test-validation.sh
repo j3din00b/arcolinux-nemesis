@@ -75,6 +75,13 @@ CORSAIR_ONLY_PKGS=("ckb-next-git")
 CORSAIR_ONLY_SVCS=("ckb-next-daemon.service")
 # 930-real-metal.sh removes these only on bare metal — inside any VM they must stay.
 BARE_METAL_REMOVE_PKGS=("qemu-guest-agent" "virtualbox-guest-utils")
+# 0-current-choices.sh keeps the tooling for the root filesystem and removes the rest.
+declare -A FS_TOOL_PKGS=(["btrfs-progs"]="btrfs" ["xfsprogs"]="xfs" ["jfsutils"]="jfs")
+
+is_root_fs_tool() {
+    local pkg="$1"
+    [[ -n "${FS_TOOL_PKGS[$pkg]:-}" && "${FS_TOOL_PKGS[$pkg]}" == "$(findmnt -no FSTYPE /)" ]]
+}
 
 is_xfce_installed() {
     [[ -f /usr/share/xsessions/xfce.desktop ]]
@@ -171,6 +178,12 @@ check_pkg_removed() {
             return
         fi
     done
+    if is_root_fs_tool "$pkg"; then
+        if [[ "$DETAIL_MODE" == true ]]; then
+            echo -e "  ${YELLOW}⊘${NC} remove $pkg  ${YELLOW}SKIPPED${NC} (root filesystem is ${FS_TOOL_PKGS[$pkg]})"
+        fi
+        return
+    fi
     if ! pacman -Qq | grep -Fxq "$pkg"; then
         log_result "SUCCESS" "$pkg - not present"
     else

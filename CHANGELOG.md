@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 2026.09.26
+
+### What Changed
+
+- `test-validation.sh` no longer fails on a btrfs (or xfs/jfs) root with "btrfs-progs - still installed". `0-current-choices.sh` keeps the tooling that matches the root filesystem and removes only the others, but the validator treated every `remove_matching_packages` line as unconditional. The tool that matches the root filesystem is now SKIPPED.
+
+### Technical Details
+
+- New `FS_TOOL_PKGS` map (`btrfs-progs`→btrfs, `xfsprogs`→xfs, `jfsutils`→jfs) and `is_root_fs_tool()` helper using the same `findmnt -no FSTYPE /` test as `0-current-choices.sh`; `check_pkg_removed` skips a package when it returns true.
+
+### Files Modified
+
+- `test-validation.sh`
+
 ## 2026.09.25
 
 ### What Changed
